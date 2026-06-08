@@ -14,4 +14,4 @@ select substring(emp_name,1,3) from employees;
 select left(emp_name,4) from employees;
 select right(emp_name,4) from employees;
 
-select trim("  I AM BATMAN   ");
+select trim("  I AM BATMAN   ")
