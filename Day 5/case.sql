@@ -13,3 +13,10 @@ SELECT emp_name,
            ELSE 'D'
        END AS grade
 FROM employees;
+
+select emp_name,department, 
+		case when department="it" then "Technical"
+			when department ="hr" then "Non-technical"
+            when department="sales" then "Non-technical"
+            end as Category from employees;
+            
