@@ -132,3 +132,36 @@ select emp_name,dept_id,salary, avg(salary) over(partition by dept_id) as depart
 
 select emp_name,dept_id,salary,max(salary) 
 over(partition by dept_id) as department_max_salary from employees;
+
+with dept_avg as(
+	select dept_id,
+    avg(salary) as avg_salary 
+    from employees
+    group by dept_id
+    )
+    select * from dept_avg
+    where avg_salary>50000;
+    
+with high_salary as(
+select emp_name 
+from employees
+where salary>50000
+)
+select * from high_salary; 
+
+with dept_avg as(
+select dept_id,
+avg(salary) as avg_salary 
+from employees
+group by dept_id having avg_salary>50000
+)
+select * from dept_avg;
+
+with dept_avg as(
+select dept_id,
+avg(salary) as avg_salary 
+from employees
+group by dept_id)
+select emp_name,salary,e.dept_id,avg_salary from employees e join dept_avg d on e.dept_id = d.dept_id where salary>avg_salary;
+
+
