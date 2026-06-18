@@ -115,3 +115,20 @@ FROM (
     FROM employees
 ) t
 WHERE rn = 1;
+
+select * 
+from 
+	(select emp_name,
+			dept_id,
+			row_number() over(
+								partition by dept_id 
+                                order by salary desc
+                                ) as rn 
+                                from employees)t
+                                where rn=2;
+select emp_name,salary,dense_rank() over(order by salary) as company_salary_rank from employees;
+
+select emp_name,dept_id,salary, avg(salary) over(partition by dept_id) as department_average_salary from employees;
+
+select emp_name,dept_id,salary,max(salary) 
+over(partition by dept_id) as department_max_salary from employees;
